@@ -1,0 +1,191 @@
+<div class="page-content">
+    <app-header></app-header>
+
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active" *ngIf="userType == 0">Studio</li>
+            <li class="breadcrumb-item active" *ngIf="userType == 1">Freelancers</li>
+            <li class="breadcrumb-item active" *ngIf="userType == 2">Equipment Owners</li>
+        </ol>
+    </div>
+
+    <div class="main-container">
+
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="table_top">
+                    <li>
+                        <h5 *ngIf="userType == 0">Registered studios</h5>
+                        <h5 *ngIf="userType == 1">Registered Freelancers</h5>
+                        <h5 *ngIf="userType == 2">Registered Equipment Owners</h5>
+                    </li>
+                    <li>
+                        <!-- <form> -->
+                        <div class="search-container">
+                            <input type="text" class="search height" placeholder="Type City..." [(ngModel)]="city"
+                                (keyup)="allUser()">
+                            <div class="search_dropdown dropdown">
+                                <div class="default_option height">subscribed/unsubscribed</div>
+                                <ul>
+                                    <li>subscribed</li>
+                                    <li>unsubscribed</li>
+                                </ul>
+                            </div>
+                            <button type="submit" class="button" (click)="search()"><i class="fa fa-search"
+                                    aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <!-- </form> -->
+                    </li>
+                    <!-- <li>
+                        <h6>total no.: <span>{{userCount}}</span></h6>
+                    </li> -->
+                </ul>
+                <div class="employee_top_head">
+                    <div class="record">
+                        <label style="margin-right:6px;">Record Per Page : </label>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="changePageLimit($event)">
+                            <option [value]="10">10</option>
+                            <option *ngFor="let item of pageList" [value]="item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>total no.: <span>{{userCount}}</span></h6>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table custom-table m-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="sl_no">#</th>
+                                    <th class="sm_col" *ngIf="userType == '0'">studio name</th>
+                                    <th class="sm_col">contact person</th>
+                                    <th class="big_col address">address</th>
+                                    <th class="big_col mob_no">mobile no./email id</th>
+                                    <th class="big_col mob_no">username</th>
+                                    <!-- <th class="sm_col">email id</th> -->
+                                    <th class="sm_col">city</th>
+                                    <th class="sm_col">reference</th>
+                                    <th class="sm_col">uploaded work</th>
+                                    <th class="big_col">subscription validity</th>
+                                    <!-- <th class="sm_col">validity</th> -->
+                                    <th class="big_col s_links">Social Media Links</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let item of userList; let i = index;">
+                                    <th scope="row" class="sl_no">{{i+1}}</th>
+                                    <td class="sm_col" *ngIf="userType == '0'">
+                                        <p>{{item.orgName}}</p>
+                                    </td>
+                                    <td class="sm_col">
+                                        <p>{{item.name}}</p>
+                                    </td>
+                                    <td class="big_col address">
+                                        <p class="text-left">
+                                            {{item.address}},{{item.location}},{{item.city}},{{item.pin}},{{item.state_name}},{{item.country_name}}
+                                        </p>
+                                    </td>
+                                    <td class="big_col mob_no">
+                                        <p>{{item.mobile}}/ </p>
+                                        <p>{{item.alt_mobile}}</p>
+                                        <p class="email_id">{{item.email}}</p>
+                                    </td>
+                                    <td class="sm_col">
+                                        <p>{{item.userName}}</p>
+                                    </td>
+                                    <!-- <td class="sm_col"><p class="email_id">abcde_01@gmail.com</p></td> -->
+                                    <td class="sm_col">
+                                        <p>{{item.city}}</p>
+                                    </td>
+                                    <td class="sm_col">
+                                        <p>{{item.reference}}</p>
+                                    </td>
+                                    <td class="sm_col">
+                                        <a class="view_btn btn-info">view</a>
+                                    </td>
+                                    <td class="big_col">
+
+                                    </td>
+                                    <!-- <td class="sm_col">
+                                        <p>expires on nov 23, 2024</p>
+                                    </td> -->
+                                    <td class="big_col s_links">
+                                        <ul class="personal-ul social_links">
+                                            <li>
+                                                <ul class="d-flex justify-content-between">
+                                                    <li>
+                                                        <a (click)="goToSocialLink(item.YoutubeLink)" class="youtube">
+                                                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+
+                                                            <!-- <p>youtube link</p> -->
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a (click)="goToSocialLink(item.FBLink)" class="facebook">
+                                                            <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                                            <!-- <p>facebook link</p> -->
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a (click)="goToSocialLink(item.YoutubeLink)" class="instagram">
+                                                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                                                            <!-- <p>instagram link</p> -->
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                            </li>
+                                            <li>
+                                                <ul class="d-flex justify-content-between">
+                                                    <li>
+                                                        <a (click)="goToSocialLink(item.linkedInLink)" class="linkedin">
+                                                            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                                            <!-- <p>linkedin link</p> -->
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a (click)="goToSocialLink(item.websiteLink)" class="website">
+                                                            <i class="fa fa-globe" aria-hidden="true"></i>
+                                                            <!-- <p>website link</p> -->
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a (click)="goToSocialLink(item.jdLink)" class="jd">
+                                                            <img src="assets/img/dashboard_images/jd.png" alt="JD"
+                                                                loading="lazy" class="jd_img">
+                                                            <!-- <p>jd link</p> -->
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nxt_pre_btn">
+                        <button type="button" class="previous_btn" (click)="previous()" [disabled]="offset == 0">
+                            <!-- <i class="fa-solid fa-angle-left"></i> -->
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="next_btn" (click)="next()"
+                            [disabled]="(userCount <= userList.length) || (limit > userList.length)">
+                            <!-- <i class="fa-solid fa-angle-right"></i> -->
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Row end -->
+
+    </div>
+</div>

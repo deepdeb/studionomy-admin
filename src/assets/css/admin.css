@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
+
+
+/* admin login  */
+body{
+    margin: 0;
+    height: 100vh;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif;
+
+}
+button.menu_links.login_btn{
+    background: #F2921D;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-family: 'Source Code Pro', monospace;
+    text-transform: capitalize;
+    transition: all 0.5s ease-in-out;
+    width: 100%;
+    font-size: 16px;
+}
+button.menu_links.login_btn:hover{
+  background: #ca7b19;
+}
+.dashboard_logo{
+    display: flex;
+    flex-direction: column;
+  }
+  .dashboard_logo{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 16px ;
+}
+.dashboard_logo img{
+  width: 100% !important;
+}
+.logo_title {
+    color: #0a58ca;
+    font-size: 20px !important;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+}
+.log_in_div .log_in_area .my-form {
+    text-align: center;
+}
+.log_in_div{
+    position: relative;
+    height: 100%;
+}
+.log_in_div .log_in_bg{
+    position: relative;
+    width: 100%;
+    height: 625px;
+    object-fit: cover;
+}
+.log_in_area .admin_head{
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+.my-form{
+    padding: 40px 24px;
+    background: #fef8ed;
+    box-shadow: 0 0 20px 0 #0003, 0 5px 5px 0 #0000003d;
+    border-radius: 4px;
+    width: 30%;
+}
+.log_in_area{
+    background-image: linear-gradient(#002d6b, #ffb88c);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.my-form .form-control{
+    height: 44px;
+    border: 1px solid #d4d4d4;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 18px;
+    width: 100%;
+}
+.my-form .form-control::placeholder{
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+
+@media (max-width: 991px) {
+.my-form{
+    width: auto;
+}
+}

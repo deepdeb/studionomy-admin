@@ -1,0 +1,190 @@
+<div class="page-content">
+    <app-header></app-header>
+    <!-- Page header start -->
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">available subscriptions</li>
+        </ol>
+    </div>
+    <div class="main-container">
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="table_top">
+                    <li>
+                        <h5>List Of Availed Subscriptions</h5>
+                    </li>
+                    <li>
+                        <!-- <form> -->
+                        <div class="search-container">
+                            <input [(ngModel)]="searchCondition" type="text" class="search height" placeholder="Search By subscriber name...">
+                            <button type="submit" class="button" (click)="searchSubscriber(searchCondition)"><i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <!-- </form> -->
+                    </li>
+                    <!-- <li>
+                        <a href="add_subscription.html"><i class="fa-solid fa-plus"></i> add subscription</a>
+                    </li> -->
+                    <!-- <li>
+                        <ul class="add_sub">
+                            <li><a href="add_subscription.html" class="subs_add"><i class="fa-solid fa-plus"></i>add subscription</a></li>
+                            <li><h6>total no.: <span>50</span></h6></li>
+                        </ul>
+                        <h6>total no.: <span>50</span></h6>
+                    </li> -->
+                </ul>
+                <div class="employee_top_head">
+                    <div class="record">
+                        <label style="margin-right:6px;">Record Per Page : </label>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="changePageLimit($event)">
+                            <option [value]="10">10</option>
+                            <option *ngFor="let item of pageList" [value]="item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>total no.: <span>{{totalAvailedSubscription}}</span></h6>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table custom-table m-0">
+                            <thead>
+
+                                <tr>
+                                    <th scope="col" class="sl_no">#</th>
+                                    <th>date of subscription</th>
+                                    <th>subscriber name</th>
+                                    <th>contact person / mob no.</th>
+                                    <th>subscription for</th>
+                                    <th>subscription name</th>
+                                    <th>subscription type</th>
+                                    <th>amount</th>
+                                    <th>transaction id</th>
+                                    <th>no. of jobs</th>
+                                    <th>validity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of availedSubscriptionList; let i=index">
+                                    <th scope="row" class="sl_no">{{ i+1 }}</th>
+                                    <th>
+                                        <p>{{dateFormat(item.start_date)}}</p>
+                                    </th>
+                                    <td>
+                                        <p>{{ item.orgName }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.name }}</p>
+                                        <p>{{ item.mobile }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.subs_for === 0 ? 'studio' : (item.subs_for === 1 ? 'freelancer' : 'equipment owner') }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.subs_name }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.subs_type === 0 ? 'package' : 'topup' }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.final_amount }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.transaction_id }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.jobs_remain }}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ item.validity }}</p>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <th scope="row" class="sl_no">2</th>
+                                    <th>
+                                        <p>25/10/2023</p>
+                                    </th>
+                                    <td>
+                                        <p>studio name</p>
+                                    </td>
+                                    <td>
+                                        <p>Kent Hoeger</p>
+                                        <p>0000 000 000</p>
+                                    </td>
+                                    <td>
+                                        <p>studios</p>
+                                    </td>
+                                    <td>
+                                        <p>Mercury Pack</p>
+                                    </td>
+                                    <td>
+                                        <p>package</p>
+                                    </td>
+                                    <td>
+                                        <p>1800/-</p>
+                                    </td>
+                                    <td>
+                                        <p>1000</p>
+                                    </td>
+                                    <td>
+                                        <p>1 year</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="sl_no">3</th>
+                                    <th>
+                                        <p>10/09/2023</p>
+                                    </th>
+                                    <td>
+                                        <p>freelancer name</p>
+                                    </td>
+                                    <td>
+                                        <p>Terence Wuckert</p>
+                                        <p>0000 000 000</p>
+                                    </td>
+                                    <td>
+                                        <p>freelancers</p>
+                                    </td>
+                                    <td>
+                                        <p>Jupiter Pack</p>
+                                    </td>
+                                    <td>
+                                        <p>package</p>
+                                    </td>
+                                    <td>
+                                        <p>100/-</p>
+                                    </td>
+                                    <td>
+                                        <p>-</p>
+                                    </td>
+                                    <td>
+                                        <p>1 year</p>
+                                    </td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nxt_pre_btn">
+                        <button type="button" class="previous_btn" (click)="previous()" [disabled]="offset == 0">
+                            <!-- <i class="fa-solid fa-angle-left"></i> -->
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="next_btn" (click)="next()"
+                            [disabled]="(totalAvailedSubscription <= availedSubscriptionList.length) || (limit > availedSubscriptionList.length)">
+                            <!-- <i class="fa-solid fa-angle-right"></i> -->
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Row end -->
+
+    </div>
+    <!-- Main container end -->
+
+</div>

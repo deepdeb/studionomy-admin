@@ -1,0 +1,227 @@
+<div class="page-content">
+    <app-header></app-header>
+    <!-- Page header start -->
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">subscriptions</li>
+        </ol>
+
+        <!-- <ul class="app-actions">
+            <li>
+                <a href="#" id="reportrange">
+                    <span class="range-text">Feb 27, 2023 - Mar 28, 2023</span>
+                    <i class="icon-chevron-down"></i>	
+                </a>
+            </li>
+            
+        </ul> -->
+    </div>
+    <!-- Page header end -->
+
+    <!-- Main container start -->
+    <div class="main-container">
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
+                <div class="table-container ">
+                    <ul class="table_top">
+                        <li>
+                            <h4>Add subscription</h4>
+                        </li>
+                    </ul>
+                    <div class="table-responsive">
+                        <table class="table custom-table m-0">
+                            <thead>
+                                <tr>
+                                    <th>subscription for</th>
+                                    <th>subscription name</th>
+                                    <th>subscription type</th>
+                                    <th>amount</th>
+                                    <th>discount type</th>
+                                    <th>enter discount</th>
+                                    <th>final amount</th>
+                                    <th>no. of jobs</th>
+                                    <th>validity(days)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <select id="single-select" class="select_list" [(ngModel)]="subs_for">
+                                            <option value="">select one</option>
+                                            <option [value]="0">studios</option>
+                                            <option [value]="1">Freelancers</option>
+                                            <option [value]="2">equipment owners</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center"><input type="text" class="select_list"
+                                            [(ngModel)]="subs_name"></td>
+                                    <td class="text-center">
+                                        <select id="single-select" class="select_list" [(ngModel)]="subs_type">
+                                            <option value="">select one</option>
+                                            <option [value]="0">package</option>
+                                            <option [value]="1">topup</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center"><input type="text" class="select_list" [(ngModel)]="amount"
+                                            onkeypress="if(event.which < 48 || event.which > 57 ) if(event.which != 8) if(event.keyCode != 9) if(event.which != 46) return false;" (keyup)="calculateFinalAmount()">
+                                    </td>
+                                    <td class="text-center">
+                                        <select id="single-select" class="select_list" [(ngModel)]="discount_type" (change)="discount = 0; final_amount = amount">
+                                            <option value="">select one</option>
+                                            <option value="flat">flat</option>
+                                            <option value="percent">percent</option>
+                                        </select>
+                                    </td>
+                                    <td class="text-center"><input type="text" class="select_list" [(ngModel)]="discount" size="4" (keyup)="calculateFinalAmount()">
+                                    </td>
+                                    <td class="text-center"><input type="text" class="select_list" [(ngModel)]="final_amount" readonly>
+                                    </td>
+                                    <td class="text-center"><input type="text" class="select_list"
+                                            [(ngModel)]="no_of_jobs"
+                                            onkeypress="if(event.which < 48 || event.which > 57 ) if(event.which != 8) if(event.keyCode != 9) return false;">
+                                    </td>
+                                    <td class="text-center"><input type="text" class="select_list"
+                                            [(ngModel)]="validity"
+                                            onkeypress="if(event.which < 48 || event.which > 57 ) if(event.which != 8) if(event.keyCode != 9) return false;">
+                                    </td>
+                                    <td class="text-center"><button type="submit" class="subs_add"
+                                            (click)="subscriptionSubmit()"><i class="fa fa-plus" aria-hidden="true"></i>
+                                            {{ editFlag ? 'update' : 'add' }}</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Row end -->
+
+
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="table_top">
+                    <li>
+                        <h5>subscription List</h5>
+                    </li>
+                    <li>
+                        <!-- <form> -->
+                        <div class="search-container">
+                            <input type="text" class="search height" placeholder="Search By Subscription Name..."
+                                [(ngModel)]="searchSubsName" (keyup)="allSubscription()">
+                            <button type="submit" class="button" (click)="search()"><i class="fa fa-search"
+                                    aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <!-- </form> -->
+                    </li>
+                    <!-- <li>
+                        <a href="add_subscription.html"><i class="fa-solid fa-plus"></i> add subscription</a>
+                    </li> -->
+                    <!-- <li>
+                        <ul class="add_sub">
+                            <li><a href="add_subscription.html" class="subs_add"><i class="fa-solid fa-plus"></i>add subscription</a></li>
+                            <li><h6>total no.: <span>50</span></h6></li>
+                        </ul>
+                        <h6>total no.: <span>{{totalSubscription}}</span></h6>
+                    </li> -->
+                </ul>
+                <div class="employee_top_head">
+                    <div class="record">
+                        <label style="margin-right:6px;">Record Per Page : </label>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="changePageLimit($event)">
+                            <option [value]="10">10</option>
+                            <option *ngFor="let item of pageList" [value]="item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>total no.: <span>{{totalSubscription}}</span></h6>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table custom-table m-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="sl_no">#</th>
+                                    <th>subscription for</th>
+                                    <th>subscription name</th>
+                                    <th>subscription type</th>
+                                    <th>amount</th>
+                                    <th>no. of jobs</th>
+                                    <th>validity</th>
+                                    <th>action</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let item of subscriptionList; let i =index;">
+                                    <th scope="row" class="sl_no">{{i+1}}</th>
+                                    <td>
+                                        <p *ngIf="item.subs_for == 0">studios</p>
+                                        <p *ngIf="item.subs_for == 1">freelancers</p>
+                                        <p *ngIf="item.subs_for == 2">Equipment Owners</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.subs_name}}</p>
+                                    </td>
+                                    <td>
+                                        <p *ngIf="item.subs_type == 0">package</p>
+                                        <p *ngIf="item.subs_type == 1">topup</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.final_amount}}/-</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.no_of_jobs}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.validity ? item.validity + ' Days' : 'Main pack validity'}}</p>
+                                    </td>
+                                    <td class="text-center">
+                                        <select id="single-select" class="select_list" [(ngModel)]="item.isActive">
+                                            <option value="">select one</option>
+                                            <option [value]="1">active</option>
+                                            <option [value]="0">inactive</option>
+                                        </select>
+                                    </td>
+                                    <td><button type="submit" class="btn_1 btn-success"
+                                            (click)="subscriptionStatus(item.subs_id,item.isActive)">save</button></td>
+                                    <td><button type="submit" class="btn_1 btn-warning"
+                                            (click)="fetchEditData(item)">edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nxt_pre_btn">
+                        <button type="button" class="previous_btn" (click)="previous()" [disabled]="offset == 0">
+                            <!-- <i class="fa-solid fa-angle-left"></i> -->
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="next_btn" (click)="next()"
+                            [disabled]="(totalSubscription <= subscriptionList.length) || (limit > subscriptionList.length)">
+                            <!-- <i class="fa-solid fa-angle-right"></i> -->
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Row end -->
+
+    </div>
+    <!-- Main container end -->
+
+</div>

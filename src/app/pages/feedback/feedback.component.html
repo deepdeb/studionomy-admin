@@ -1,0 +1,135 @@
+<div class="page-content">
+    <app-header></app-header>
+
+    <!-- Page header start -->
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">feedbacks</li>
+        </ol>
+
+        <!-- <ul class="app-actions">
+            <li>
+                <a href="#" id="reportrange">
+                    <span class="range-text">Feb 27, 2023 - Mar 28, 2023</span>
+                    <i class="icon-chevron-down"></i>	
+                </a>
+            </li>
+            
+        </ul> -->
+    </div>
+    <!-- Page header end -->
+
+    <!-- Main container start -->
+    <div class="main-container">
+
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="table_top">
+                    <li>
+                        <h5>registered feedbacks</h5>
+                    </li>
+                    <li>
+                        <!-- <form> -->
+                        <div class="search-container">
+                            <input type="text" class="search height" placeholder="Search By Name..."
+                                [(ngModel)]="searchName" (keyup)="allFeedback()">
+                            <button type="submit" class="button" (click)="search()">
+                                <!-- <i class="fa fa-search" aria-hidden="true"></i> -->
+                                <!-- <i class="fa-solid fa-house"></i> -->
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <!-- <i class="fa-solid fa-magnifying-glass"></i>  -->
+                            </button>
+                        </div>
+                        <!-- </form> -->
+                    </li>
+                    <!-- <li>
+                        <h6>total no.: <span>{{totalFeedback}}</span></h6>
+                    </li> -->
+                    
+                </ul>
+                <div class="employee_top_head">
+                    <div class="record">
+                        <label style="margin-right:6px;">Record Per Page : </label>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="changePageLimit($event)">
+                            <option [value]="10">10</option>
+                            <option *ngFor="let item of pageList" [value]="item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>total no.: <span>{{totalFeedback}}</span></h6>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table custom-table m-0">
+                            <thead>
+
+                                <tr>
+                                    <th scope="col" class="sl_no">#</th>
+                                    <th style="width: 7%;">Submit Date</th>
+                                    <th>person name</th>
+                                    <th>mobile no./email id</th>
+                                    <!-- <th>email id</th> -->
+                                    <th>uploaded image</th>
+                                    <th>feedbacks</th>
+                                    <th>action</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let item of feedbackList;let i = index;">
+                                    <th scope="row" class="sl_no">{{i+1}}</th>
+                                    <td style="width: 8%">
+                                        <p>{{dateFormat(item.submited_date)}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.name}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.mobile}}/ </p>
+                                        <p>{{item.alt_mobile}}</p>
+                                        <p class="email_id">{{item.email}}</p>
+                                    </td>
+                                    <td><img src="assets/img/dashboard_images/work-1.jpg" class="upload_img" alt="IMAGE"
+                                            loading="lazy"></td>
+                                    <td class="text-left">
+                                        <p style="text-transform:none;">{{item.feedback_details}}
+                                        </p>
+                                    </td>
+                                    <td>
+                                        <select id="single-select" class="select_list" [(ngModel)]="item.isShow">
+                                            <option value="select one">select one</option>
+                                            <option [value]="1">approved</option>
+                                            <option [value]="0">decline</option>
+                                        </select>
+                                    </td>
+
+                                    <td><button type="submit" class="btn_1 btn-success"
+                                            (click)="statusChange(item.f_id,item.isShow)">save</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nxt_pre_btn">
+                        <button type="button" class="previous_btn" (click)="previous()"
+                            [disabled]="offset == 0">
+                            <!-- <i class="fa-solid fa-angle-left"></i> -->
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="next_btn" (click)="next()"
+                            [disabled]="(totalFeedback <= feedbackList.length) || (limit > feedbackList.length)">
+                            <!-- <i class="fa-solid fa-angle-right"></i> -->
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

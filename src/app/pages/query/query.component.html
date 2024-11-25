@@ -1,0 +1,122 @@
+<div class="page-content">
+    <app-header></app-header>
+
+    <!-- Page header start -->
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">queries</li>
+        </ol>
+
+        <!-- <ul class="app-actions">
+            <li>
+                <a href="#" id="reportrange">
+                    <span class="range-text">Feb 27, 2023 - Mar 28, 2023</span>
+                    <i class="icon-chevron-down"></i>	
+                </a>
+            </li>
+            
+        </ul> -->
+    </div>
+    <!-- Page header end -->
+
+    <!-- Main container start -->
+    <div class="main-container">
+
+        <!-- Row start -->
+        <div class="row gutters">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <ul class="table_top">
+                    <li>
+                        <h5>registered queries</h5>
+                    </li>
+                    <li>
+                        <!-- <form> -->
+                        <div class="search-container">
+                            <input type="text" class="search height" placeholder="Search By Name..."
+                                [(ngModel)]="searchName" (keyup)="allQuery()">
+                            <button type="submit" class="button" (click)="search()"><i class="fa fa-search"
+                                    aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <!-- </form> -->
+                    </li>
+                    <!-- <li>
+                        <h6>total no.: <span>{{totalQuery}}</span></h6>
+                    </li> -->
+                </ul>
+                <div class="employee_top_head">
+                    <div class="record">
+                        <label style="margin-right:6px;">Record Per Page : </label>
+                        <select class="form-select" aria-label="Default select example"
+                            (change)="changePageLimit($event)">
+                            <option [value]="10">10</option>
+                            <option *ngFor="let item of pageList" [value]="item.value">{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h6>total no.: <span>{{totalQuery}}</span></h6>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table custom-table m-0">
+                            <thead>
+
+                                <tr>
+                                    <th scope="col" class="sl_no">#</th>
+                                    <th>Submit Date</th>
+                                    <th>person name</th>
+                                    <th>mobile no.</th>
+                                    <th>email id</th>
+                                    <th>queries</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let item of queryList; let i=index;">
+                                    <th scope="row" class="sl_no">{{i+1}}</th>
+                                    <td>
+                                        <p>{{dateFormat(item.submited_date)}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.name}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.mobile}}/</p>
+                                        <p>{{item.alt_mobile}}</p>
+                                    </td>
+                                    <td>
+                                        <p class="email_id"> {{item.email}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{item.querie_details}}
+                                        </p>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="nxt_pre_btn">
+                        <button type="button" class="previous_btn" (click)="previous()" [disabled]="offset == 0">
+                            <!-- <i class="fa-solid fa-angle-left"></i> -->
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="next_btn" (click)="next()"
+                            [disabled]="(totalQuery <= queryList.length) || (limit > queryList.length)">
+                            <!-- <i class="fa-solid fa-angle-right"></i> -->
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Row end -->
+
+    </div>
+    <!-- Main container end -->
+
+</div>
+<!-- Page content end -->

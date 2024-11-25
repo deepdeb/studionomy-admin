@@ -1,0 +1,91 @@
+<div class="page-content">
+    <app-header></app-header>
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Home <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </li>
+            <li class="breadcrumb-item active">Admin Dashboard</li>
+        </ol>
+    </div>
+    <div class="main-container">
+        <div class="row gutters mygtters">
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="info-stats4-main clrs_1">
+                    <div class="info-stats4">
+                        <div class="info-icon">
+                            <img src="assets/img/dashboard_images/studioowner.png" alt="STUDIO" loading="lazy">
+                        </div>
+                        <div class="sale-num">
+                            <h3>{{totalStudioUser}}</h3>
+                            <p>studios</p>
+                        </div>
+                    </div>
+
+                    <div class="info_card_link">
+                        <a (click)="goToUser(0)">view all list <span><i class="fa fa-arrow-right"
+                                    aria-hidden="true"></i>
+                            </span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="info-stats4-main clrs_2">
+                    <div class="info-stats4">
+                        <div class="info-icon">
+                            <img src="assets/img/dashboard_images/freelancer-1.png" alt="STUDIO" loading="lazy">
+                        </div>
+                        <div class="sale-num">
+                            <h3>{{totalFreelancerUser}}</h3>
+                            <p>freelancers</p>
+                        </div>
+                    </div>
+
+                    <div class="info_card_link">
+                        <a (click)="goToUser(1)">view all list <span><i class="fa fa-arrow-right"
+                                    aria-hidden="true"></i>
+                            </span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="info-stats4-main clrs_3">
+                    <div class="info-stats4">
+                        <div class="info-icon">
+                            <img src="assets/img/dashboard_images/equipmentowner.png" alt="STUDIO" loading="lazy">
+                        </div>
+                        <div class="sale-num">
+                            <h3>{{totalEquipmentUser}}</h3>
+                            <p>equipment owners</p>
+                        </div>
+                    </div>
+
+                    <div class="info_card_link">
+                        <a (click)="goToUser(2)">view all list <span><i class="fa fa-arrow-right"
+                                    aria-hidden="true"></i>
+                            </span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="info-stats4-main clrs_9">
+                    <div class="info-stats4">
+                        <div class="info-icon">
+                            <img src="assets/img/dashboard_images/subscription.png" alt="SUBSCRIPTION" loading="lazy">
+                        </div>
+                        <div class="sale-num">
+                            <h3>{{totalSubscription}}</h3>
+                            <p>subscriptions</p>
+                        </div>
+                    </div>
+
+                    <div class="info_card_link">
+                        <a (click)="goToSubscription()">view all list <span><i class="fa fa-arrow-right"
+                                    aria-hidden="true"></i>
+                            </span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h6 {
+  font-size: .85rem !important;
+}
+
+.nxt_pre_btn {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.nxt_pre_btn button {
+  border-radius: 50%;
+  padding: 4px 10px;
+  border: none;
+  background: white;
+  box-shadow: 0 1px 6px #b3b3b3;
+}
+
+.previous_btn {
+  color: #ff761e;
+  margin-right: 8px;
+}
+
+.next_btn {
+  color: #034bb1;
+}
+
+.employee_top_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h6{
+  text-transform: capitalize;
+}

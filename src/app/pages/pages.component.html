@@ -1,0 +1,67 @@
+<div class="page-wrapper">
+    <nav id="sidebar" class="sidebar-wrapper">
+        <a href="dashboard.html" class=" dashboard_logo">
+            <img src="./assets/img/dashboard_images/NOMY2.png" alt="logo" loading="lazy">
+            <!-- <span class="logo_title">Studio Lancers</span> -->
+        </a>
+        <div class="sidebar-content">
+            <div class="sidebar-menu">
+                <ul>
+                    <li class="sidebar-dropdown active">
+                        <a (click)="goToDashboard()">
+                            <img src="./assets/img/dashboard_images/dashboard.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="goToUser(0)">
+                            <img src="./assets/img/dashboard_images/studioowner.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">studios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="goToUser(1)">
+                            <img src="./assets/img/dashboard_images/freelancer-1.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">freelancers</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-dropdown">
+                        <a (click)="goToUser(2)">
+                            <img src="./assets/img/dashboard_images/equipmentowner.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">equipment owners</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="goToFeedbackList()">
+                            <img src="./assets/img/dashboard_images/feedback.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">feedbacks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="goToQueryList()">
+                            <img src="./assets/img/dashboard_images/queries.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">queries</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a (click)="goToSubscription()">
+                            <img src="./assets/img/dashboard_images/subscription.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">subscription</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="goToAvailedSubscription()">
+                            <img src="./assets/img/dashboard_images/subscription.png" alt="STUDIO" loading="lazy">
+                            <span class="menu-text">availed subscription</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+    <router-outlet></router-outlet>
+
+</div>
